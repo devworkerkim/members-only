@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<% include ./parts/header %>
+
+<% for (var message of messages) { %>
+  <div>
+    <h2>Title: <%- message.title %></h2>
+    <% if (user && user.status === "active") { %>
+      <h3>Author: <%- message.firstname %> <%- message.lastname %></h3>
+      <h4>Date: <%- message.date_created %></h4>
+    <% } %>
+    <p><%- message.text %></p>
+    <% if (user && user.admin === true) { %>
+      <a href="/messages/<%- message._id %>/delete">Delete Message</a>
+    <% } %>
+  </div>
+<% } %>
+
+<% include ./parts/footer %>

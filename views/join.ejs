@@ -1,0 +1,14 @@
+<% include ./parts/header %>
+
+<p>Enter the secret passcode to access full messages.</p>
+<% if (user) { %>
+    <form action="" method="POST">
+        <label for="password">Secret Passcode: </label>
+        <input type="password" name="password" id="password" />
+        <input type="submit" />
+    </form>
+<% } else { %>
+    <p>You must be logged in to join the group.</p>
+<% } %>
+
+<% include ./parts/footer %>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title %></title>
+</head>
+<body>
+    <header>
+        <div>
+            <h1><a href="/">Members Only</a></h1>
+            <% if (user) { %>
+                <p>Logged in as <strong><%- user.firstname %> <%- user.lastname %></strong></p>
+            <% } %>
+        </div>
+        <nav>
+            <ul>
+                <% if (user) { %>
+                    <% if (user.status === 'active') { %>
+                        <li><a href="/messages/create">Create Message</a></li>
+                        <% if (user.admin === false) { %>
+                            <li><a href="/users/admin">Make Admin</a></li>
+                        <% } %>
+                    <% } else { %>
+                        <li><a href="/users/join">Join The Group</a></li>
+                    <% } %>
+                    <li><a href="/users/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/users/create">Sign Up</a></li>
+                    <li><a href="/users/login">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </header>
+    <main>
